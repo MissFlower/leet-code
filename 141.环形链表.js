@@ -18,23 +18,23 @@
  * @return {boolean}
  */
 var hasCycle = function (head) {
-  const arr = []
-
-  function walkList(list) {
-    if (list === null) {
-      return false
-    }
-
-    if (arr.includes(list.val)) {
-      return true
-    } else {
-      arr.push(list.val)
-    }
-
-    return walkList(list.next)
+  if (head === null) {
+    return false
   }
 
-  return walkList(head)
+  let slow = head
+  let fast = head.next
+
+  while (fast && fast.next) {
+    if (slow === fast) {
+      return true
+    }
+
+    slow = slow.next
+    fast = fast.next.next
+  }
+
+  return false
 };
 // @lc code=end
 
